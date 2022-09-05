@@ -1,60 +1,51 @@
-const fs = require('fs');
 const express = require('express');
 const path = require('path');
-const api = require("")
-const api = require("./public/assets/js/index.js")
-
-const database = require('./db/notes.json')
-const { uuid } = require('./utils/id.js');
+const fs = require('fs');
+const uuid = require('uuid'); 
 
 const PORT = process.env.PORT || 3001;
 
 const app = express();
 
-// Middleware for parsing JSON and urlencoded form data
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
 app.use(express.static('public'));
 
-// GET Route from Homepage
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public.index.html'));
-});
-
-// GET Route for Notes page
-app.get('/notes', (req, res) =>
-  res.sendFile(path.join(__dirname, '/public/notes.html'))
-);
-
-// GET Route for retrieving all the Notes
+// GET route for notes
 app.get('/api/notes', (req, res) => {
-
-  fs.readFile(path.join(__dirname, './db/notes.json'), 'utf-8', (error, data) => {
-    if (error) throw error;
-    res.json(JSON.parse(data));
-  });
-});
-
-// POST Route for a new Note
-app.post('/api/notes', (req, res) => {
-  const { title, text } = req.body;
-
-  if (title && text) {
-    const createdNote = { title, text, id: uuid(), };
-    database.push(createdNote);
-
-    let storedNotes = JSON.stringify((database), null, 2);
-
-    fs.writeFile(`./db/notes.json`, storedNotes, () => {
-      const response = {
-        body: createdNote,
-      }
-      res.json(response);
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+        // console.log(err);
+        res.json(JSON.parse(data));
     })
-  };;
-});
+})
+
+app.post('/api/notes', (req, res) => {
+    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+        console.log(err);
+        const notes = JSON.parse(data);
+        const newNote = {
+            title: req.body.title,
+            text: req.body.text,
+            id: Math.floor (Math.random()*1000)
+          };
+        // req.body['uuid'] = uuid();
+        notes.push(newNote);
+        fs.writeFile('./db/db.json', JSON.stringify(notes), (err) => {
+            console.log(err);
+            res.json(notes);
+        })
+    })
+})
+
+app.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, '/public/notes.html'))
+})
+
+// GET for index.html?
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '/public/index.html'))
+})
 
 app.listen(PORT, () =>
-  console.log(`App listening at http://localhost:${PORT} 🚀`)
+    console.log(`App listening at http://localhost:${PORT} 🚀`)
 );

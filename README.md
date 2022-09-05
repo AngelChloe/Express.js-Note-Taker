@@ -17,7 +17,7 @@ The assignement requires students to use existing starter code to create an appl
 
 - [Repository](https://github.com/Cinderbeast/Express.js-Note-Taker)
 
-- [Heroku] (https://dry-dawn-71235.herokuapp.com/)
+- [Heroku](https://dry-dawn-71235.herokuapp.com/)
 
 
 ## Visuals

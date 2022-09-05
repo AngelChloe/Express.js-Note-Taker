@@ -22,7 +22,7 @@ The assignement requires students to use existing starter code to create an appl
 
 ## Visuals
 
-![Note Taker Screenshot]()
+![Note-Taker Screenshot](https://user-images.githubusercontent.com/105569378/188512750-7a82babc-992f-409a-a189-c29070d3cfd6.png)
 
 ## Author and Acknowledgements
 

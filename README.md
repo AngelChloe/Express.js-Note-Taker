@@ -13,7 +13,7 @@ The assignement requires students to use existing starter code to create an appl
 
 ## Resources
 
-- [LIVE SITE]()
+- [LIVE SITE](https://cinderbeast.github.io/Express.js-Note-Taker)
 
 - [Repository](https://github.com/Cinderbeast/Express.js-Note-Taker)
 

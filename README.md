@@ -26,4 +26,4 @@ The assignement requires students to use existing starter code to create an appl
 
 ## Author and Acknowledgements
 
-Code created by University of Utah Bootcamp, edited by Cindy
+Code created by University of Utah Bootcamp, edited by Cindy Chynoweth
